@@ -36,6 +36,21 @@ int main()
 	//Establecemos la ventana como contexto
 	glfwMakeContextCurrent(window);
 
+	//una vez establecido el contexto
+	//se activan las funciones "modernas" (gpu)
+	glewExperimental = true;
+
+	GLenum errores = glewInit();
+	if (errores != GLEW_OK) {
+		glewGetErrorString(errores);
+	}
+
+	const GLubyte* versionGL = glGetString(GL_VERSION);
+	cout << "Version OpenGL: " << versionGL;
+
+
+
+
 	//Ciclo de dibujo (DrawLoop)
 	while (!glfwWindowShouldClose(window)) {
 		
