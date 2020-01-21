@@ -13,6 +13,84 @@
 
 using namespace std;
 
+void dibujarPoligono() {
+	glBegin(GL_POLYGON);
+
+	glColor3f(0.3f, 0.5f, 0.2f);
+	glVertex3f(0.7f, 0.8f, 0.0f);
+	glVertex3f(0.4f, 0.7f, 0.0f);
+	glVertex3f(0.4f, 0.5f, 0.0f);
+	glVertex3f(0.6f, 0.6f, 0.0f);
+
+	glEnd();
+}
+
+void dibujarTriangulos() {
+	//Establecemos el tipo de primitiva
+	glBegin(GL_TRIANGLES);
+	//Establecemos el color
+	glColor3f(0.0f, 0.0f, 1.0f);
+	//Envíar vértices
+	glVertex3f(-0.5f, 0.5f, 0.0f);
+	glVertex3f(-0.5f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.5f, 0.0f);
+
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(-0.5f, 0.0f, 0.0f);
+
+	//Especificar que dejaremos de dibujar
+	glEnd();
+}
+void dibujarLineas() {
+	glBegin(GL_LINES);
+	glColor3f(1.0f, 0.4f, 0.6f);
+
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.2f, -0.4f, 0.0f);
+
+
+	glEnd();
+}
+
+void dibujarLineaContinua() {
+	glBegin(GL_LINE_STRIP);
+	glColor3f(0.1f, 0.3f, 0.4f);
+
+	glVertex3f(0.5f, 0.1f, 0.0f);
+	glVertex3f(0.8f, 0.2f, 0.0f);
+	glVertex3f(0.9f, 0.5f, 0.0f);
+	glVertex3f(0.9f, 0.2f, 0.0f);
+	glVertex3f(0.7f, 0.1f, 0.0f);
+
+	glEnd();
+}
+
+void dibujarTrianguloContinuo() {
+	glBegin(GL_TRIANGLE_STRIP);
+
+	glColor3f(0.3f, 0.7f, 0.5f);
+	glVertex3f(-0.5f, 0.1f, 0.0f);
+	glVertex3f(-0.8f, 0.2f, 0.0f);
+	glVertex3f(-0.9f, 0.5f, 0.0f);
+	
+	glColor3f(0.4f, 0.2f, 0.3f);
+	glVertex3f(-0.9f, 0.2f, 0.0f);
+	
+	glColor3f(0.0f, 0.9f, 0.5f);
+	glVertex3f(-0.7f, 0.1f, 0.0f);
+
+	glEnd();
+}
+
+void dibujar() {
+	dibujarLineas();
+	dibujarTriangulos();
+	dibujarLineaContinua();
+	dibujarTrianguloContinuo();
+	dibujarPoligono();
+}
+
 int main()
 {
 	//Declarar una ventana
@@ -25,7 +103,7 @@ int main()
 	}
 	//Si se pudo iniciar GLFW
 	//Inicializamos la ventana
-	window = glfwCreateWindow(800, 600, "Ventana", NULL, NULL);
+	window = glfwCreateWindow(600, 600, "Ventana", NULL, NULL);
 
 	//Si no se pudo crear la ventana
 	//Terminamos la ejecución
@@ -34,6 +112,7 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 	//Establecemos la ventana como contexto
+
 	glfwMakeContextCurrent(window);
 
 	//una vez establecido el contexto
@@ -55,14 +134,16 @@ int main()
 	while (!glfwWindowShouldClose(window)) {
 		
 		//Establecer región de dibujo
-		glViewport(00, 0, 800, 600);
+		glViewport(00, 0, 600, 600);
 		//Establecemos el color de borrado
 		//Valores RGBA
-		glClearColor(1, 0.2, 0.5, 1);
+		glClearColor(1, 1, 0.5, 1);
 		//Borrar
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		//Actualizar valores y dibujar
+		dibujar();
+		glfwPollEvents();
 		glfwSwapBuffers(window);
 
 	}
