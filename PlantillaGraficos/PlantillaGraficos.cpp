@@ -73,10 +73,10 @@ void dibujarTrianguloContinuo() {
 	glVertex3f(-0.5f, 0.1f, 0.0f);
 	glVertex3f(-0.8f, 0.2f, 0.0f);
 	glVertex3f(-0.9f, 0.5f, 0.0f);
-	
+
 	glColor3f(0.4f, 0.2f, 0.3f);
 	glVertex3f(-0.9f, 0.2f, 0.0f);
-	
+
 	glColor3f(0.0f, 0.9f, 0.5f);
 	glVertex3f(-0.7f, 0.1f, 0.0f);
 
@@ -132,7 +132,7 @@ int main()
 
 	//Ciclo de dibujo (DrawLoop)
 	while (!glfwWindowShouldClose(window)) {
-		
+
 		//Establecer región de dibujo
 		glViewport(00, 0, 600, 600);
 		//Establecemos el color de borrado
@@ -140,7 +140,7 @@ int main()
 		glClearColor(1, 1, 0.5, 1);
 		//Borrar
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
+
 		//Actualizar valores y dibujar
 		dibujar();
 		glfwPollEvents();
